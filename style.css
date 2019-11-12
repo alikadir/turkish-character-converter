@@ -1,0 +1,59 @@
+@font-face {
+    font-family: "amazon-ember";
+    src: url("./fonts/AmazonEmber_Rg.ttf");
+}
+
+body {
+    font-family: amazon-ember;
+}
+
+textarea {
+    min-height: 150px;
+    padding: 7px;
+    width: 100%;
+    border-radius: 7px;
+    line-height: 17px;
+    outline: none;
+}
+
+.wrapper {
+    max-width: 1024px;
+    margin: 30px;
+    min-width: 150px;
+}
+
+.result {
+    width: 100%;
+    margin-top: 35px;
+    margin-bottom: 50px;
+}
+
+.checkbox {
+    float: right;
+    margin-top: 3px;
+}
+
+button {
+    border: 1px solid #00a719;
+    border-radius: 5px;
+    padding: 7px;
+    background-color: #00a719;
+    color: white;
+    outline: none;
+}
+
+button:hover {
+    background-color: darkgreen;
+    cursor: pointer;
+}
+
+.checkbox span {
+    position: relative;
+    top: -2px;
+}
+
+@keyframes shine {
+    0%   {opacity: 0;}
+    50%  {opacity: 1;}
+    100% {opacity: 0;}
+}
