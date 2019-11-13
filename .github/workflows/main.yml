@@ -1,0 +1,23 @@
+name: Deploy to Surge
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+      
+    - name: install surge
+      run: sudo npm install -g surge
+      
+    - name: deploy to surge
+      run: surge --domain $DOMAIN ./
+      env:
+        DOMAIN: ${{ secrets.SURGE_DOMAIN }} 
+        SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+        SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+          
+    
