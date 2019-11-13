@@ -1,10 +1,11 @@
 @font-face {
     font-family: "amazon-ember";
-    src: url("./fonts/AmazonEmber_Rg.ttf");
+    src: url("fonts/AmazonEmber_Rg.ttf");
 }
 
 body {
     font-family: amazon-ember;
+    background-color: #F3F3F3;
 }
 
 textarea {
@@ -18,8 +19,9 @@ textarea {
 
 .wrapper {
     max-width: 1024px;
-    margin: 30px;
+    margin: auto;
     min-width: 150px;
+    padding: 30px;
 }
 
 .result {
@@ -30,20 +32,20 @@ textarea {
 
 .checkbox {
     float: right;
-    margin-top: 3px;
+    margin-top: 7px;
 }
 
 button {
-    border: 1px solid #00a719;
+    border: 1px solid #ff8b00;
     border-radius: 5px;
     padding: 7px;
-    background-color: #00a719;
+    background-color: #FF9900;
     color: white;
     outline: none;
 }
 
 button:hover {
-    background-color: darkgreen;
+    background-color: #ff8b00;
     cursor: pointer;
 }
 
@@ -53,7 +55,13 @@ button:hover {
 }
 
 @keyframes shine {
-    0%   {opacity: 0;}
-    50%  {opacity: 1;}
-    100% {opacity: 0;}
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }

@@ -44,6 +44,17 @@ function autoResize(e) {
 
 document.addEventListener("DOMContentLoaded", function (event) {
     DeasciifyHandler.init();
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js');
+    }
+    window.addEventListener("online", function(){
+        notify("you are online");
+    });
+    window.addEventListener("offline", function () {
+        notify("you are offline!");
+    });
+
     document.querySelector('input[type=checkbox]').addEventListener('click', autoResize);
     document.querySelector('button').addEventListener('click', convert);
 });
