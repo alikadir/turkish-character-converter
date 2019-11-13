@@ -1,4 +1,4 @@
-name: CI
+name: Deploy to Surge
 
 on: [push]
 
@@ -9,7 +9,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: surge deploy :)
+      
+    - name: install surge
+      run: npm install -g surge
+      
+    - name: deploy to surge
       run: surge --domain $DOMAIN
       env:
         DOMAIN: ${{ secrets.SURGE_DOMAIN }} 
