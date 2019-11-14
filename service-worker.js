@@ -75,3 +75,17 @@ self.addEventListener('fetch', event => {
         );
     }
 });
+
+self.addEventListener('notificationclick', function(e) {
+    var notification = e.notification;
+    var pk = notification.data.primaryKey;
+    var action = e.action;
+
+    if (action === 'close') {
+        clients.openWindow('http://www.example.com/clicked_close');
+        notification.close();
+    } else {
+        clients.openWindow('http://www.example.com/clicked_getit');
+        notification.close();
+    }
+});

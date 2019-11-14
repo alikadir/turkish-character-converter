@@ -33,6 +33,39 @@ function notify(message) {
         notifyElement.style.animation = "shine 3s"
     }, 300);
 
+    // local notification
+    if(document.querySelector('textarea').value.toLowerCase().includes('notify')) {
+
+
+        if (Notification.permission == 'granted') {
+            navigator.serviceWorker.getRegistration().then(function (reg) {
+                const options = {
+                    body: message,
+                    icon: 'images/icons/waving-hand.png',
+                    vibrate: [100, 50, 100],
+                    data: {
+                        dateOfArrival: Date.now(),
+                        primaryKey: 1
+                    },
+                    actions: [
+                        {
+                            action: 'explore', title: 'I get it',
+                            icon: 'images/icons/up.png'
+                        },
+                        {
+                            action: 'close', title: 'Close notification',
+                            icon: 'images/icons/face-palm.png'
+                        },
+                    ]
+                };
+                console.log(options);
+                reg.showNotification('hey!', options);
+            });
+        } else
+            console.log('has not notification permission!');
+    }
+
+
 }
 
 function autoResize(e) {
@@ -48,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('service-worker.js');
     }
-    window.addEventListener("online", function(){
+    window.addEventListener("online", function () {
         notify("you are online");
     });
     window.addEventListener("offline", function () {
@@ -57,4 +90,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     document.querySelector('input[type=checkbox]').addEventListener('click', autoResize);
     document.querySelector('button').addEventListener('click', convert);
+
+    Notification.requestPermission().then(function (permission) {
+        console.log(permission)
+    });
 });
