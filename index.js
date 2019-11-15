@@ -13,6 +13,7 @@ function convert() {
 }
 
 function writeClipboard(text) {
+
     navigator.permissions.query({name: "clipboard-write"}).then(result => {
         if (result.state == "granted" || result.state == "prompt") {
 
@@ -34,7 +35,7 @@ function notify(message) {
     }, 300);
 
     // local notification
-    if(document.querySelector('textarea').value.toLowerCase().includes('notify')) {
+    if (document.querySelector('textarea').value.toLowerCase().includes('notify')) {
 
 
         if (Notification.permission == 'granted') {
@@ -75,6 +76,18 @@ function autoResize(e) {
         document.querySelector('textarea').removeEventListener('input', autoGrow)
 }
 
+function pasteTextarea() {
+    navigator.permissions.query({name: "clipboard-read"}).then(result => {
+        if (result.state == "granted" || result.state == "prompt") {
+
+            navigator.clipboard.readText().then(function (text) {
+             document.querySelector('textarea').value = text;
+            });
+        }
+    });
+}
+
+
 document.addEventListener("DOMContentLoaded", function (event) {
     DeasciifyHandler.init();
 
@@ -90,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     document.querySelector('input[type=checkbox]').addEventListener('click', autoResize);
     document.querySelector('button').addEventListener('click', convert);
+    document.querySelector('textarea').addEventListener('click', pasteTextarea);
 
     Notification.requestPermission().then(function (permission) {
         console.log(permission)
