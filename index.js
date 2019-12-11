@@ -80,8 +80,9 @@ function pasteTextarea() {
     navigator.permissions.query({name: "clipboard-read"}).then(result => {
         if (result.state == "granted" || result.state == "prompt") {
 
-            navigator.clipboard.readText().then(function (text) {
-             document.querySelector('textarea').value = text;
+            navigator.clipboard.readText().then(function (text) {             
+              if(document.querySelector('textarea').value === "")   
+                 document.querySelector('textarea').value = text;
             });
         }
     });
