@@ -1,0 +1,21 @@
+name: Deploy to Zeit (Now.sh)
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: [macos-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Setup Now.sh
+      run: npm i -g now   
+
+    - name: Deploy to Zeit via Now.sh
+      run: now --name turkish-character-converter --token $ZEIT_TOKEN      
+      env:
+        ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN  }}
+
+
