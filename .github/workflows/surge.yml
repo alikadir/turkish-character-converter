@@ -5,13 +5,13 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: [macos-latest]
 
     steps:
     - uses: actions/checkout@v1
       
     - name: install surge
-      run: sudo npm install -g surge
+      run: npm i -g surge
       
     - name: deploy to surge
       run: surge --domain $DOMAIN ./
