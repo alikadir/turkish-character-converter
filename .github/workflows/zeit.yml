@@ -14,7 +14,7 @@ jobs:
       run: npm i -g now   
 
     - name: Deploy to Zeit via Now.sh
-      run: now --name turkish-character-converter --token $ZEIT_TOKEN      
+      run: now --prod --name turkish-character-converter --token $ZEIT_TOKEN      
       env:
         ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN  }}
 
